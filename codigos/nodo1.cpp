@@ -5,6 +5,12 @@
 #include <fstream> 
 using namespace std;
 
+
+
+
+
+const int tamano_arcos = 420;
+const int num_listas= 64;
 class Nodo {
 	public:
 	Edge dato;
@@ -46,10 +52,10 @@ class Lista{
 	}
 }
 
-const int n=2;	
+//const int n=2;	
 
 int main(){
-	Lista a[64];
+	Lista a[num_listas];
 /*	Lista *l= new Lista();
 	Lista *l1= new Lista();
 	Edge e;// = Edge();
@@ -115,7 +121,7 @@ cout<<"El archivo no se encuentra\n";
 //	a[0].mostrar();
 //	a[1].mostrar();*/
 int h=0;
-int q=0,arreglo[200],numero; 
+int q=0,arreglo[tamano_arcos],numero; 
 
 
 ifstream archivo("ficheroTexto.txt"); 
@@ -125,13 +131,19 @@ while(archivo>>numero)
 
 arreglo[q++]=numero;	
 
+Lista *l= new Lista();
+//Lista *l1=new Lista();
 
+int k = 0;
 for(int j=0;j<q;j++) {
-	int k = 0;
+	
 	Edge e;
 	Edge e1;
-	Lista *l= new Lista();
+	
 //cout<<h++<<" ="<<arreglo[j];
+//if (e.get_source()==1)//|| e.get_source() == -1)
+
+
 e.set_source(arreglo[j]);//.arreglo[j]<<" =1"<<endl;
 e.set_dest(arreglo[j+1]);//[j+1]<<" =2"<<endl;
 e.set_weight(arreglo[j+2]);//[j+2]<<" =3"<<endl; 
@@ -141,16 +153,34 @@ e.set_weight(arreglo[j+2]);//[j+2]<<" =3"<<endl;
 //cout<<arreglo[j]<<" =1"<<endl;
 //cout<<arreglo[j+1]<<" =2"<<endl;
 //cout<<arreglo[j+2]<<" =3"<<endl; 
+
+
+if (e.get_source()==arreglo[j-3]||e.get_source()==1)//|| e.get_source() == -1)
+{
+
 	l->agregar(e);
-//	l->agregar(e1);
 	a[k]=*l;
 	a[k].mostrar();
+}
+else
+{
+	//a[k]=*l;
+	//l->agregar(e);
+//	l->agregar(e1);
+	k++;
+	
+	Lista *l1=new Lista();
+	l1->agregar(e);
+	a[k]= *l1;
+	l =l1;
+	a[k].mostrar();
+}
+//l = l1;
 
-
-
+//a[k++].mostrar();
 cout<<endl;
 j=j+2;
-k++;
+
 
 
 /*for(int i=0; i<5;i++){
