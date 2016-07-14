@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Edge.cpp"
+#include "Nodo.cpp"
 #include <string.h> 
 #include <stdlib.h> 
 #include <fstream> 
@@ -11,14 +11,14 @@ using namespace std;
 
 const int tamano_arcos = 420;
 const int num_listas= 64;
-class Nodo {
+/*class Nodo {
 	public:
 	Edge dato;
 	Nodo *next;
 	Nodo (Edge numero, Nodo *next_ptr=NULL){
 		dato=numero, next= next_ptr;
 	}
-};
+};*/
 
 class Lista{
 	private:
@@ -65,21 +65,13 @@ int main(){
 //	e.Edge();
 //	e1.Edge();
 //	e2.Edge();
-
 int h=0;
 int i=0,arreglo[100],numero; 
-
-
 ifstream archivo("ficheroTexto.txt"); 
 if(archivo.good()){ 
 while(archivo>>numero) 
-
-
 arreglo[i++]=numero;	
-
-
 for(int j=0;j<i;j++) {
-
 //cout<<h++<<" ="<<arreglo[j];
 e.set_source(arreglo[j]);//.arreglo[j]<<" =1"<<endl;
 e.set_dest(arreglo[j+1]);//[j+1]<<" =2"<<endl;
@@ -89,16 +81,11 @@ e.set_weight(arreglo[j+2]);//[j+2]<<" =3"<<endl;
 //cout<<arreglo[j+2]<<" =3"<<endl; 
 cout<<endl;
 j=j+2;
-
 }
-
  
-
 }else{ 
 cout<<"El archivo no se encuentra\n"; 
 } 
-
-
 /*	e.set_dest(5);
 	e.set_source(9);
 	e.set_weight(15);
@@ -184,13 +171,9 @@ j=j+2;
 
 
 /*for(int i=0; i<5;i++){
-
-
 	l->agregar(e);
 	a[i]=*l;
 	a[i].mostrar();
-
-
 }*/
 }
 
@@ -203,6 +186,3 @@ cout<<"El archivo no se encuentra\n";
 
 
 }
-
-	
-

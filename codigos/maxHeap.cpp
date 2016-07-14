@@ -1,251 +1,187 @@
 #include <iostream>
-//#include "Nodo.cpp"
+#include <math.h>
 using namespace std;
 
+const int cant=8;
+class Heaparr {
+public:
+    Heaparr();
+    void insert(int da);
+    int getLeft(int i) { return 2 * i + 1; }
+    int getRight(int i) { return 2 * i + 2; }
+    int getParent(int i) { return (i - 1) / 2; }
+    int getMax() { return maxHeap[0]; }
+    void print();
+    void reheap(int num);
+    void makeArray();
+    void Build_Max_Heap(int heapArray[], int heap_size);
+    void Max_Heapify(int heapArray[], int i, int heap_size);
+    void heapSort(int heapArray[]);
+    int size();
+    int eliminar();
+    int esvaciodesde();
+  //  void swap(int, int);
+    
 
-const int maximo = 14 ;
-class maxHeap{
-	private:
-		
-		int tamano;
-		//int ptr;
-		int padre;
-		int hd, hijo;
-		int arreglo[maximo];
-	public:
-		maxHeap();
-		int eliminar();
-		void insertar(int);
-		int size();	
-		bool lugarDisponible();	
-		void imprimir();
-		void swap(int, int);
-		int Padre (int);
-	
-	};
-maxHeap::maxHeap(){
-	for(int i=0; i <9; i++){
-		arreglo[i]= -1;
+private:
+    int num;
+    int* maxHeap;
+    int index;
+    int i;
+};
 
+Heaparr::Heaparr() {
+    maxHeap = NULL;
+    num = 0;
 }
-//arreglo[4]=9;
-	for(int i=9; i <maximo; i++){
-		arreglo[i]= -1;
-	
-		}
+int Heaparr::size(){
+	int contador=0;
+	for(int i=0; i<cant;i++){
+		contador++;
+	}
+	return contador;
 }
-/*
-void maxHeap::insertar(int num){
-	bool x;
-	x= true;
-	int aux;
-	int n;
-	
-	for(int i=0;i<maximo;i++){
 
-		if((arreglo[i]== -1)&& (x ==true)){
-			arreglo[i] = num;
-			hi= arreglo[i];	
-			n=((i-1)/2);
-			padre = Padre(i);
-
-			x = false;
-			
-			for(int j=0; j<5; j++){
-			while(hi>padre){
-			
-			swap(hi, padre);
-		//	aux = hi;
-		//	hi = padre;
-		//	padre = aux;
-			
-			arreglo[i]= padre;
-			arreglo[n] = hi;
-			hi = arreglo [i];
-			padre = arreglo[n];
-		
-		}
+int Heaparr::esvaciodesde(){
+	for(int i=0; i<cant; i++){  // el puto de fabri dice que hagamos : 
+		if(maxHeap[i]==NULL){	// if(maxHeap[i]==NULL && maxHeap[i+1]==NULL)
+			return i;			// por si las dudas .
 		}
 	}
+}
+void Heaparr::insert(int da) {
+    num++;
+    int* tmp = new int[num];
+
+    for (int i = 0; i < num - 1; i++) {
+        tmp[i] = maxHeap[i];
+       
+        
+    }
 	
-		}
+    tmp[num - 1] = da;
+    
+    delete[] maxHeap;
+    maxHeap = tmp;
 	
+}
+
+void Heaparr::print(){
+	for(int i=0;i<8;i++)	{
 		
-	
-}
-*/
-void maxHeap::insertar(int num){
-	bool x;
-	x= true;
-	int aux;
-	int n;
-	int h = 4;
-	
-	for(int i=0;i<maximo;i++){
-
-		if((arreglo[i]== -1)&& (x ==true)){
-			arreglo[i] = num;
-			n=((i-1)/2);
-			hijo= arreglo[i];
-			x= false;
-			padre = Padre(i);
-			while((padre >= 0)&& padre < hijo && h!= 0)
-			{
-				cout << "padre: " << padre << endl;
-				cout << "hijo: " << hijo << endl;
-			//	swap(arreglo[i], arreglo[((i-1)/2)]);
-				//swap(padre, hijo);
-				aux = padre;
-				padre = hijo;
-				hijo = aux;
-				cout << "padre: " << padre << endl;
-				cout << "hijo: " << hijo << endl;
-				arreglo[i]= hijo;
-				arreglo[((i-1)/2)] = padre;
-				cout << "arreglo(i): "<< arreglo[i] << "  " ;
-				cout << "arreglo(n): " << arreglo[n];
-				n=((i-1)/2);
-				i= n;
-				hijo = padre;
-				padre = arreglo[(n)];
-				h--;
-				cout << "nuevo ciclo" << endl;
-			}
-
+	cout<<maxHeap[i]<<endl;//->print();
 }
 }
+void Heaparr::Max_Heapify(int heapArray[], int i, int heap_size) {
+    // int n = size;
+    int largest = 0;
+    int l = getLeft(i);
+    int r = getRight(i);
+
+    if ((l < heap_size) && (heapArray[l] < heapArray[i])) {
+        largest = l;
+    } else {
+        largest = i;
+    }
+
+    if ((r < heap_size) && (heapArray[r] < heapArray[largest])) {
+        largest = r;
+    }
+
+    if (largest != i) {
+        swap(heapArray[i], heapArray[largest]);
+        Max_Heapify(heapArray, largest, heap_size);
+    }
+    return;
 }
-//void maxHeap::insertar(int num){
+void Heaparr::heapSort(int heapArray[]) {
+    //size = heap_size;
+    int n = size ();
+    Build_Max_Heap(heapArray, size());
 
-
-
-int maxHeap::Padre(int i){
-	if((arreglo[((i-1)/2)] < maximo)&& i>=0){
-		return arreglo[((i-1)/2)];
-	}else {
-		return i;
-	}
+    for (int i = n - 1; i >= 1; i--) {
+        swap(heapArray[0], heapArray[i]);
+        n = n - 1;
+        Max_Heapify(heapArray, 0,n);
+    }
 }
 
-
-
-/*                           PADRES E HIJOS.
-int maxHeap:: hd(int i){
- 	if(2*i+2<cant && i>=0){
- 		return 2*i+2;
-	 }else {
-	 	return i;
-	 }
- }
- 
- int maxHeap::hi(int i){
- 	if(2*i+1<cant && i>=0){
- 		return i;
-	 }
- }
-
-int maxHeap::padre(int i){
-	if(floor((i-1)/2)<cant && i>=0){
-		return floor((i-1)/2);
-	}else {
-		return i;
-	}
+void Heaparr::Build_Max_Heap(int heapArray[], int heap_size) {
+    int n = size();
+    for (int i = floor((n - 1) / 2); i >= 0; i--) {
+        Max_Heapify(heapArray, i, heap_size);
+    }
+    return;
 }
-*/
-/*
-void maxHeap::insertar(int num){
-	bool x;
-	x= true;
-	for(int i=0;i<cant;i++){
-		if((arreglo[i]==-1) && (arreglo[i-2] != -1)){
-			a[i]=num;
-			//int t=size();
-			hi= a[size()+1];
-			padre= a[((hi-1)/2)];
-			while (padre>=-1 && a[padre]< a[hi]){
-				swap (a[padre],a[hi]);
-				int aux;
-				aux=hi;
-				hi=padre;
-				padre=a[((aux -1)/2)];
-			}
-			}
-	 }	  
- }
- */
- 
-	
-	//for()
-//arreglo
 
-
-
-int maxHeap::eliminar()
+int Heaparr::eliminar()
 {
 	int aux;
-	aux = arreglo [0];
-	for(int i=0; i< maximo ; i++){
-	if((arreglo[i+1]==-1) && (arreglo[i] != -1)){
-		arreglo[0]= arreglo[i];
-		arreglo [i]= -1;
+	aux = maxHeap [0];
+	for(int i=0; i< cant ; i++){
+	if((maxHeap[i+1]==-0) && (maxHeap[i] != 0)){
+		maxHeap[0]= maxHeap[i];
+		maxHeap [i]= 0;
 }
 }
 
-if (arreglo[0]< arreglo [1])
-	swap(arreglo[0], arreglo[1]);
+if (maxHeap[0]< maxHeap [1])
+	swap(maxHeap[0], maxHeap[1]);
 
-if (arreglo[0]< arreglo[2])
-	swap(arreglo[0], arreglo[2]);
+if (maxHeap[0]< maxHeap[2])
+	swap(maxHeap[0], maxHeap[2]);
 
 
 return aux;
 }	
 
-void maxHeap::imprimir(){
-	for(int i=0; i< maximo ; i++){
-		cout << "numeros:" << arreglo[i] << endl;
-	}
-}
-	
-
-
-bool maxHeap::lugarDisponible()
-{
-	return true;	
-}
-void maxHeap::swap (int c, int b){
+/*void Heaparr::swap (int c, int b){
 	int aux;
 	aux= c;
 	c= b;
 	b=aux;
-}
+}*/
 
-/*
-	void encolar (int a);
-	void desencolar();
-	int cabeza();
-	bool colaVacia();
-	*/
-	
 int main(){
-	int hd;
-	int hd2;
-	maxHeap M = maxHeap();
-//	M.imprimir();
-//hd=	M.eliminar();
-//hd2 = M.eliminar();
-//	M.eliminar();
-	M.insertar(10);
-	M.insertar(18);
-//	M.insertar(30);
-//	M.insertar(12);
-//	M.insertar(8);
-//	M.insertar(14);
-//	M.insertar(30);
-//	M.insertar(19);
-//	M.insertar(2);
-//	M.insertar(45);
-	//hd2 = M.eliminar();
-	M.imprimir();
-	cout << "aaaaa" << hd << "bbbb "<< hd2;
+	
+	Heaparr t;
+//	t.insert(4);
+//	t.insert(8);
+//	t.insert(3);
+//	t.print();
+	int hArray[cant] = {109,14,0,256};
+//	cout<<t.size();
+	 t.heapSort(hArray);
+	for (int i=0;i<cant;i++) {
+      t.insert(hArray[i]);
+    }
+  
+  //  std::cout << std::endl;
+    t.print();
+    cout<< " primera iteracion"<<endl;
+  //  cout<< t.esvaciodesde();
+    t.eliminar();
+    for (int i=0;i<cant;i++) { // era para ver si se actualizaba
+      t.insert(hArray[i]);
+    }
+    cout<<t.esvaciodesde()<<endl;
+    for(int i= t.esvaciodesde(); i<cant;i++){
+    	hArray [3]= 65;
+	}
+    for (int i=0;i<cant;i++) {  // era para ver si se actualizaba
+      t.insert(hArray[i]);
+    }
+    t.print();
+ //   cout<<t.esvaciodesde();
+ /*   t.print();
+  //  hArray[cant] = {66,1024,98,8};
+    t.print();
+    t.eliminar();
+    cout<< " segunda "<<endl;
+    t.eliminar();
+    t.eliminar();
+    t.print();
+    return 0;
+	// t.insert()
+//	 t.print();*/
 }
