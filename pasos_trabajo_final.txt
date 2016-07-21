@@ -1,7 +1,7 @@
-crear grafo 											(1)			LISTO
-que lea de archivo para crear el grafo. 64 manzanas. por lista de adyacencia  			(1.1)			LISTO
-crear semaforos ( colas de vehiculos)								(3)
-crear vehiculos ( ambulancia y patrulleros extienden)  						(2)	
+crear grafo 											(1)		LISTO
+que lea de archivo para crear el grafo. 64 manzanas. por lista de adyacencia  			(1.1)		LISTO
+crear semaforos ( colas de vehiculos)								(3)		
+crear vehiculos ( ambulancia y patrulleros extienden)  						(2)		LISTO
 colas de semaforos ( cola). heap de arreglo . se habilitan primero los de mas peso		(4)
 determinar el  camino mas corto por dijsktajsi							(7)
 mi auto modifica el camino cada dos iteraciones para donde tenga menos peso los arcos		(8)
