@@ -2,6 +2,8 @@
 #include <string.h> 
 #include <stdlib.h> 
 #include <fstream> 
+//# include "maxHeap.cpp"
+
 using namespace std;
 
 class Vehiculos{
@@ -12,11 +14,15 @@ class Vehiculos{
 		int patente;
 		
 	public:
-		Vehiculos(int patente, int origen, int final, int prioridad){
-			this->patente=patente;
+		Vehiculos(){
+			/*this->patente=patente;
 			this->final=final;
 			this->prioridad=prioridad;   //Sacamos la prioridad del constructor. A lo sumo agregarla de nuevo.
-			this->origen=origen;
+			this->origen=origen;*/
+			origen=-1;
+			final=-1;
+			prioridad=-1;
+			patente=-1;
 		}
 		void set_origen(int);
 		void set_final (int);
@@ -56,19 +62,22 @@ int Vehiculos::get_patente(){
 int Vehiculos::get_prioridad(){
 	return prioridad;
 }
-
+/*
 int main(){   
 
-int numero, arreglo[10], q;
+
+int numero, arreglo[40], q;
 ifstream archivo("ficheroAutos.txt"); 
 if(archivo.good()){ 
 while(archivo>>numero) 
 arreglo[q++]=numero;
-for(int i=0; i<q;i++){
+
+/*for(int i=0; i<q;i++){
 	cout<<arreglo[i]<<endl;
 }
+*//*
 for(int j=0;j<q;j++) {
-	Vehiculos *v=new Vehiculos(0,0,0,0);
+	Vehiculos *v=new Vehiculos();
 //	Vehiculos *v=new Vehiculos(arreglo[j],arreglo[j+1],arreglo[j+2],arreglo[j+3]);
 		v->set_patente(arreglo[j]);
 		v->set_origen(arreglo[j+1]);
@@ -81,8 +90,9 @@ for(int j=0;j<q;j++) {
 	
 	cout << "prioridad: " << v->get_prioridad() << endl;
 	cout<<endl;
-}
-    }                                                   //	la clase main fue implementada
+	j=j+3;
+}}
+    }//                                                 //	la clase main fue implementada
 /*	const int max=6;												  // solo para hacer la prueba.
 	for (int i=0; i<max;i++){										   //La saco para subirla a git y que 
 		Vehiculos *v= new Vehiculos(00+i,i+1);						   //no tire errores.
@@ -99,9 +109,10 @@ for(int j=0;j<q;j++) {
 	}
 	cout << "prioridad: " << v->get_prioridad() << endl;
 	cout<<endl;
-}*/
+	*/
+//}
 
-}
+//}
 
 
 
