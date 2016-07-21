@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string.h> 
+#include <stdlib.h> 
+#include <fstream> 
 using namespace std;
 
 class Vehiculos{
@@ -9,14 +12,16 @@ class Vehiculos{
 		int patente;
 		
 	public:
-		Vehiculos(int patente, int final){
+		Vehiculos(int patente, int origen, int final, int prioridad){
 			this->patente=patente;
 			this->final=final;
-			//this->prioridad=prioridad;   //Sacamos la prioridad del constructor. A lo sumo agregarla de nuevo.
+			this->prioridad=prioridad;   //Sacamos la prioridad del constructor. A lo sumo agregarla de nuevo.
+			this->origen=origen;
 		}
 		void set_origen(int);
 		void set_final (int);
 		void set_prioridad(int);
+			void set_patente(int);
 		int get_origen();
 		int get_final();
 		int get_patente();
@@ -34,7 +39,9 @@ void Vehiculos::set_final(int fin){
 	{
 		prioridad = priori;
 	}
-
+void Vehiculos::set_patente(int paten){
+	patente=paten;
+}
 int Vehiculos::get_origen(){
 	return origen;
 }
@@ -50,24 +57,52 @@ int Vehiculos::get_prioridad(){
 	return prioridad;
 }
 
-/*int main(){                                                          la clase main fue implementada
-	const int max=6;												   solo para hacer la prueva.
-	for (int i=0; i<max;i++){										   La saco para subirla a git y que 
-		Vehiculos *v= new Vehiculos(00+i,i+1);						   no tire errores.
+int main(){   
+
+int numero, arreglo[10], q;
+ifstream archivo("ficheroAutos.txt"); 
+if(archivo.good()){ 
+while(archivo>>numero) 
+arreglo[q++]=numero;
+for(int i=0; i<q;i++){
+	cout<<arreglo[i]<<endl;
+}
+for(int j=0;j<q;j++) {
+	Vehiculos *v=new Vehiculos(0,0,0,0);
+//	Vehiculos *v=new Vehiculos(arreglo[j],arreglo[j+1],arreglo[j+2],arreglo[j+3]);
+		v->set_patente(arreglo[j]);
+		v->set_origen(arreglo[j+1]);
+		v->set_final(arreglo[j+2]);
+		v->set_prioridad(arreglo[j+3]);
+		
+	cout<< "patente: "<< v->get_patente()<< endl;
+	cout<< "origen: "<< v->get_origen()<< endl;
+	cout<< "final: "<< v->get_final()<< endl;
+	
+	cout << "prioridad: " << v->get_prioridad() << endl;
+	cout<<endl;
+}
+    }                                                   //	la clase main fue implementada
+/*	const int max=6;												  // solo para hacer la prueba.
+	for (int i=0; i<max;i++){										   //La saco para subirla a git y que 
+		Vehiculos *v= new Vehiculos(00+i,i+1);						   //no tire errores.
 		v->set_origen(i);
 		v->set_prioridad(1);
 	cout<< "origen: "<< v->get_origen()<< endl;
 	cout<< "final: "<< v->get_final()<< endl;
 	cout<< "patente: "<< v->get_patente()<< endl;
 	
+	
 	if (i==3)
 	{
 		v->set_prioridad(0);
 	}
 	cout << "prioridad: " << v->get_prioridad() << endl;
+	cout<<endl;
+}*/
+
 }
-}
-*/
+
 
 
 
