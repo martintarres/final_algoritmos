@@ -17,10 +17,11 @@ public:
     void Build_Max_Heap(int heapArray[], int heap_size);
     void Max_Heapify(int heapArray[], int i, int heap_size);
     void heapSort(int heapArray[]);
+    int lugaresDisponibles();
     int size();
     int eliminar();
     int esvaciodesde();
-  //  void swap(int, int);
+
     
 
 private:
@@ -28,48 +29,68 @@ private:
     int* maxHeap;
     int index;
     int i;
+   int vector [cant];
+
 };
 
 Heaparr::Heaparr() {
-    maxHeap = NULL;
+  //  maxHeap = NULL;
     num = 0;
+    for(int i=0; i<cant; i++){
+		vector[i]=-1;
+	}
+ 
 }
-int Heaparr::size(){
-	int contador=0;
+int Heaparr::lugaresDisponibles(){
+	int contador=cant;
 	for(int i=0; i<cant;i++){
-		contador++;
+		
+			if(vector[i]>=0){
+			
+		contador--;
+		}
+	}
+	return contador;
+}
+
+int Heaparr::size(){
+	int contador=cant;
+	for(int i=0; i<cant;i++){
+		
 	}
 	return contador;
 }
 
 int Heaparr::esvaciodesde(){
-	for(int i=0; i<cant; i++){  // el puto de fabri dice que hagamos : 
-		if(maxHeap[i]==NULL){	// if(maxHeap[i]==NULL && maxHeap[i+1]==NULL)
-			return i;			// por si las dudas .
+	for(int i=0 ; i<cant; i++){
+		if(vector[i]== -1){
+		//	b++;
+			return i;
 		}
+	
 	}
+
 }
 void Heaparr::insert(int da) {
-    num++;
-    int* tmp = new int[num];
+/*		for(int i=0; i<cant; i++){
+		cout<<vector[i];
+	}*/
+//	for(int i= esvaciodesde(); i<cant;i++){
+	if(lugaresDisponibles()>0){
 
-    for (int i = 0; i < num - 1; i++) {
-        tmp[i] = maxHeap[i];
-       
-        
-    }
+	vector[esvaciodesde()]=da;
+	}	else {
+	cout<<"Cola llena"<< endl;
+	}
 	
-    tmp[num - 1] = da;
-    
-    delete[] maxHeap;
-    maxHeap = tmp;
-	
+	heapSort( vector);
+
 }
 
 void Heaparr::print(){
 	for(int i=0;i<8;i++)	{
 		
-	cout<<maxHeap[i]<<endl;//->print();
+	cout<<vector[i]<<endl;//->print();
 }
 }
 void Heaparr::Max_Heapify(int heapArray[], int i, int heap_size) {
@@ -116,20 +137,29 @@ void Heaparr::Build_Max_Heap(int heapArray[], int heap_size) {
 
 int Heaparr::eliminar()
 {
+	const int pepito=-1;
 	int aux;
-	aux = maxHeap [0];
+	aux = vector [0];
 	for(int i=0; i< cant ; i++){
-	if((maxHeap[i+1]==-0) && (maxHeap[i] != 0)){
-		maxHeap[0]= maxHeap[i];
-		maxHeap [i]= 0;
+	if((vector[i+1]==-1) && (vector[i] != -1)){
+		vector[0]= vector[i];
+		vector [i]= -1;
+}else {
+	if(lugaresDisponibles()==0){
+	
+		vector[0]=-1;
+	}
+	}
 }
-}
+ heapSort( vector);
+	
+//}
 
-if (maxHeap[0]< maxHeap [1])
-	swap(maxHeap[0], maxHeap[1]);
+if (vector[0]< vector [1])
+	swap(vector[0], vector[1]);
 
-if (maxHeap[0]< maxHeap[2])
-	swap(maxHeap[0], maxHeap[2]);
+if (vector[0]< vector[2])
+	swap(vector[0], vector[2]);
 
 
 return aux;
@@ -145,33 +175,114 @@ return aux;
 int main(){
 	
 	Heaparr t;
-//	t.insert(4);
-//	t.insert(8);
+/*	cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+	t.insert(4);
+	cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+	t.insert(8);
+		cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+		t.eliminar();
+		cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;*/
 //	t.insert(3);
 //	t.print();
-	int hArray[cant] = {109,14,0,256};
+/*	int hArray[cant]={0,0,0,0,0,0,0,0};// = {109,14,0,256};
+	int vector[cant]= {256,109,50,15,14};
+	for(int i=0; i<cant;i++){
+		hArray[i]= vector[i];
+	}
 //	cout<<t.size();
 	 t.heapSort(hArray);
 	for (int i=0;i<cant;i++) {
       t.insert(hArray[i]);
     }
+  */
+/*  int vectorr[cant]= {3,109,50,978,14};
+  for(int i=0; i<cant;i ++){
+  	t.insert(vectorr[i]);
+  }
+  t.print();
+  cout<<endl;*/
+ 
+ // t.print();
+  //cout<< endl;
+  //t.eliminar();
+  //t.print();
+  t.insert(69);
+   cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  t.insert(114);
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+ t.insert(8);
+ cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  t.insert(2);
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  t.insert(999);
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  t.insert(457);
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+ t.insert(1000);
+ cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  t.insert(55);
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  t.print();
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  cout<<endl;
+//  t.insert(9);
+  //t.print();
+ // cout<<endl;
+  t.eliminar();
+  cout<<endl;
+  t.print();
+  cout<< "el tamaño es: " <<t.lugaresDisponibles()<<endl;
+  cout<<endl;
+  t.insert(9);
+  t.print();
+  cout<< "el tamaño es: " <<t.lugaresDisponibles()<<endl;
+  cout<<endl;
+   t.eliminar();
+   cout<<endl;
+  t.print();
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  
+ /*  t.eliminar();
+  t.print();
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+  cout<<endl;
+  t.insert(5);
+  t.print();
+  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;*/
+//  t.insert(97);
+//  t.print();
+  //t.eliminar();
+//  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+//  t.print();
+////cout<<endl;
+//  t.insert(5);
+//  t.print();
+//  cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
+ // t.insert(9);
+//  t.insert(8);
+//  t.insert(4);
   
   //  std::cout << std::endl;
-    t.print();
-    cout<< " primera iteracion"<<endl;
+   // t.print();
+  //  cout<< " primera iteracion"<<endl;
   //  cout<< t.esvaciodesde();
-    t.eliminar();
-    for (int i=0;i<cant;i++) { // era para ver si se actualizaba
+  // t.eliminar();
+ //  t.heapSort(hArray);
+//    for (int i=0;i<cant;i++) {
+ //     t.insert(hArray[i]);
+//  }
+  // t.print();
+ /*   for (int i=0;i<cant;i++) { // era para ver si se actualizaba
       t.insert(hArray[i]);
-    }
-    cout<<t.esvaciodesde()<<endl;
-    for(int i= t.esvaciodesde(); i<cant;i++){
-    	hArray [3]= 65;
-	}
-    for (int i=0;i<cant;i++) {  // era para ver si se actualizaba
-      t.insert(hArray[i]);
-    }
-    t.print();
+    }*/
+  //  cout<<t.esvaciodesde()<<endl;
+//    for(int i= t.esvaciodesde(); i<cant;i++){
+    //	hArray [3]= 65;
+//	}
+ //   for (int i=0;i<cant;i++) {  // era para ver si se actualizaba
+  //    t.insert(hArray[i]);
+  //  }
+ //   t.print();
  //   cout<<t.esvaciodesde();
  /*   t.print();
   //  hArray[cant] = {66,1024,98,8};
