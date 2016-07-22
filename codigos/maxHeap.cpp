@@ -175,6 +175,10 @@ return aux;
 int main(){
 	
 	Heaparr t;
+	t.print();
+	t.insert(9);
+	t.print();
+}
 /*	cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
 	t.insert(4);
 	cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
@@ -206,6 +210,7 @@ int main(){
   //cout<< endl;
   //t.eliminar();
   //t.print();
+  /*
   t.insert(69);
    cout<< "el tamaño es: "<<t.lugaresDisponibles()<<endl;
   t.insert(114);
@@ -295,4 +300,4 @@ int main(){
     return 0;
 	// t.insert()
 //	 t.print();*/
-}
+//}

@@ -1,4 +1,4 @@
-#include "Edge.cpp"
+//#include "Semaforo.cpp"
 
 class Nodo {
 	public:

@@ -1,24 +1,23 @@
 #include <iostream>
-#include "Nodo.cpp"
+//#include "Nodo.cpp"
 #include <string.h> 
 #include <stdlib.h> 
 #include <fstream> 
+#include "maxHeapSemaforo.cpp"
+
 using namespace std;
-
-
-
-
-
 const int tamano_arcos = 420;
 const int num_listas= 64;
-/*class Nodo {
+
+
+class Nodo {
 	public:
 	Edge dato;
 	Nodo *next;
 	Nodo (Edge numero, Nodo *next_ptr=NULL){
 		dato=numero, next= next_ptr;
 	}
-};*/
+};
 
 class Lista{
 	private:
@@ -55,58 +54,12 @@ class Lista{
 //const int n=2;	
 
 int main(){
+	
+	Lista *l= new Lista();	
+       
+	
 	Lista a[num_listas];
-/*	Lista *l= new Lista();
-	Lista *l1= new Lista();
-	Edge e;// = Edge();
-//	Edge e1;//= Edge(7,9,8);
-//	Edge e2;//= Edge(11,98,82);
-//	Edge e3;//= Edge (99,98,97);
-//	e.Edge();
-//	e1.Edge();
-//	e2.Edge();
-int h=0;
-int i=0,arreglo[100],numero; 
-ifstream archivo("ficheroTexto.txt"); 
-if(archivo.good()){ 
-while(archivo>>numero) 
-arreglo[i++]=numero;	
-for(int j=0;j<i;j++) {
-//cout<<h++<<" ="<<arreglo[j];
-e.set_source(arreglo[j]);//.arreglo[j]<<" =1"<<endl;
-e.set_dest(arreglo[j+1]);//[j+1]<<" =2"<<endl;
-e.set_weight(arreglo[j+2]);//[j+2]<<" =3"<<endl; 
-//cout<<arreglo[j]<<" =1"<<endl;
-//cout<<arreglo[j+1]<<" =2"<<endl;
-//cout<<arreglo[j+2]<<" =3"<<endl; 
-cout<<endl;
-j=j+2;
-}
- 
-}else{ 
-cout<<"El archivo no se encuentra\n"; 
-} 
-/*	e.set_dest(5);
-	e.set_source(9);
-	e.set_weight(15);
-	e1.set_dest(78);
-	e1.set_source(2);
-	e1.set_weight(45);
-	e2.set_dest(98);
-	e2.set_source(65);
-	e2.set_weight(150);
-	e3.set_dest(54);
-	e3.set_source(100);
-	e3.set_weight(1000);
-*/	
-//	l->agregar(e);
-//	l->agregar(e1);
-//	l->agregar(e3);
-//	l1->agregar(e2);
-//	a[0]=*l;
-//	a[1]=*l1;
-//	a[0].mostrar();
-//	a[1].mostrar();*/
+
 int h=0;
 int q=0,arreglo[tamano_arcos],numero; 
 
@@ -118,28 +71,22 @@ while(archivo>>numero)
 
 arreglo[q++]=numero;	
 
-Lista *l= new Lista();
+//Lista *l= new Lista();
 //Lista *l1=new Lista();
-
+	Heaparr1 t;
+	//Heaparr v;
 int k = 0;
 for(int j=0;j<q;j++) {
-	
+	//Heaparr1 t;
 	Edge e;
-	Edge e1;
-	
-//cout<<h++<<" ="<<arreglo[j];
-//if (e.get_source()==1)//|| e.get_source() == -1)
+//	Edge e1;
 
 
 e.set_source(arreglo[j]);//.arreglo[j]<<" =1"<<endl;
 e.set_dest(arreglo[j+1]);//[j+1]<<" =2"<<endl;
-e.set_weight(arreglo[j+2]);//[j+2]<<" =3"<<endl; 
-//e1.set_source(arreglo[j]);//.arreglo[j]<<" =1"<<endl;
-//e1.set_dest(arreglo[j+1]);//[j+1]<<" =2"<<endl;
-//e1.set_weight(arreglo[j+2]);
-//cout<<arreglo[j]<<" =1"<<endl;
-//cout<<arreglo[j+1]<<" =2"<<endl;
-//cout<<arreglo[j+2]<<" =3"<<endl; 
+e.set_weight(j*2);
+Semaforo s=  Semaforo(e); 
+t.insert(s);
 
 
 if (e.get_source()==arreglo[j-3]||e.get_source()==1)//|| e.get_source() == -1)
@@ -151,9 +98,6 @@ if (e.get_source()==arreglo[j-3]||e.get_source()==1)//|| e.get_source() == -1)
 }
 else
 {
-	//a[k]=*l;
-	//l->agregar(e);
-//	l->agregar(e1);
 	k++;
 	
 	Lista *l1=new Lista();
@@ -162,27 +106,64 @@ else
 	l =l1;
 	a[k].mostrar();
 }
-//l = l1;
 
-//a[k++].mostrar();
 cout<<endl;
 j=j+2;
 
 
 
-/*for(int i=0; i<5;i++){
-	l->agregar(e);
-	a[i]=*l;
-	a[i].mostrar();
-}*/
+
 }
 
- 
+ t.print();
 
 }
 else{ 
 cout<<"El archivo no se encuentra\n"; 
-} 
+} /*
+for(int j=0;j<q;j++) {
+a[j].mostrar();
+}
+	*/
+	a[4].mostrar();
+/*
+		Heaparr g;
+	
+	
+	int numeroo, arregloo[100], c=0;
+ifstream archivoo("ficheroAutos.txt"); 
+if(archivoo.good()){ 
+while(archivoo>>numeroo) 
+arregloo[c++]=numeroo;
 
+
+for(int j=0;j<c;j++) {
+	Vehiculos *v=new Vehiculos();
+
+		v->set_patente(arregloo[j]);
+		v->set_origen(arregloo[j+1]);
+		v->set_final(arregloo[j+2]);
+		v->set_prioridad(arregloo[j+3]);
+		g.insert(*v);
+		
+	
+	
+		
+		
+	//	
+	//cout<< "patente: "<< v->get_patente()<< endl;
+//	cout<< "origen: "<< v->get_origen()<< endl;
+//	cout<< "final: "<< v->get_final()<< endl;
+	
+//	cout << "prioridad: " << v->get_prioridad() << endl;
+	
+	j=j+3;
+}
+g.print();
+
+
+}
+
+*/
 
 }

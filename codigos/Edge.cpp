@@ -28,6 +28,7 @@ class Edge{
 		void set_dest(int);
 		void set_source(int);
 		void set_weight(int);
+		bool isEdge(int, int);
 };
 	
 	void Edge::set_dest(int a){
@@ -59,5 +60,14 @@ class Edge{
 		} else {
 			return false;
 		}
+	}
+	
+	bool Edge::isEdge(int a, int b){
+		if(a== get_source() && b==get_dest()){
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 
