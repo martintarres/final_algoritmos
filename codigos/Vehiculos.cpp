@@ -12,6 +12,7 @@ class Vehiculos{
 		int final;
 		int prioridad;
 		int patente;
+	
 		
 	public:
 		Vehiculos(){
@@ -23,6 +24,7 @@ class Vehiculos{
 			final=-1;
 			prioridad=-1;
 			patente=-1;
+		
 		}
 		void set_origen(int);
 		void set_final (int);
@@ -32,6 +34,8 @@ class Vehiculos{
 		int get_final();
 		int get_patente();
 		int get_prioridad();
+
+		
 };
 
 void Vehiculos::set_origen(int orig){
@@ -62,6 +66,9 @@ int Vehiculos::get_patente(){
 int Vehiculos::get_prioridad(){
 	return prioridad;
 }
+
+
+
 /*
 int main(){   
 

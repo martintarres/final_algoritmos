@@ -90,6 +90,116 @@ int Lista::getSource(){
 
 int main(){
 	
+//	int main(){
+	
+	Lista *l= new Lista();	
+   	Lista a[num_listas];
+   	Vehiculos v;
+   	Vehiculos v2;
+   	Heaparr1 t;
+   	Heaparr g;
+
+
+int h=0;
+int q=0,arreglo[tamano_arcos],numero; 
+
+
+ifstream archivo("ficheroTexto.txt"); 
+if(archivo.good()){ 
+while(archivo>>numero) 
+
+
+arreglo[q++]=numero;	
+
+
+	
+
+int k = 0;
+for(int j=0;j<q;j++) {
+	
+	Edge e;
+
+
+
+e.set_source(arreglo[j]);//.arreglo[j]<<" =1"<<endl;
+e.set_dest(arreglo[j+1]);//[j+1]<<" =2"<<endl;
+e.set_weight(arreglo[j+2]);
+
+Semaforo s=  Semaforo(e); 
+t.insert(s);
+
+v.set_origen(1);
+v.set_final(2);
+v.set_patente(0);
+v.set_prioridad(1);
+v2.set_origen(1);
+v2.set_final(2);
+v2.set_patente(1);
+v2.set_prioridad(1);
+
+s.insert(v);
+s.insert(v2);
+
+/// esto no iba
+
+for(int h=0; h<20; h++){
+	bool colocado= false;
+
+	for(int i=0; i<140; i++){
+		//cout<< t.recorre(i).getUbicacion()<<endl;
+	
+		
+	
+	if((t.recorre(i).getUbicacion()== g.recorrer(h).get_origen() )&& (colocado == false)){
+		
+		e.set_weight(s.esvaciodesde());
+	//	cout<< g.recorrer(h).get_patente()<< " entre "<<endl;
+		colocado=true;
+	}
+	}
+}
+////
+
+//e.set_weight(s.esvaciodesde());
+
+if (e.get_source()==arreglo[j-3]||e.get_source()==1)//|| e.get_source() == -1)
+{
+
+	l->agregar(e);
+	a[k]=*l;
+
+}
+else
+{
+	k++;
+	
+	Lista *l1=new Lista();
+	l1->agregar(e);
+	a[k]= *l1;
+	l =l1;
+
+}
+
+
+j=j+2;
+
+}
+
+ //t.print();
+
+}
+//}
+
+for(int i=0; i<64; i++){
+	a[i].mostrar();
+	cout<<endl;
+	}
+}
+
+
+
+	
+/*	
 	Lista *l= new Lista();	
    	Lista a[num_listas];
    	Vehiculos v;
@@ -142,7 +252,7 @@ for(int j=0;j<q;j++) {
 
 e.set_source(arreglo[j]);//.arreglo[j]<<" =1"<<endl;
 e.set_dest(arreglo[j+1]);//[j+1]<<" =2"<<endl;
-e.set_weight(j+2);
+e.set_weight(arreglo[j+2]);
 
 //Semaforo s=  Semaforo(e); 
 s= Semaforo (e);

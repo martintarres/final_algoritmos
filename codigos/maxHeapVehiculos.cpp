@@ -23,6 +23,7 @@ public:
     int size();
     Vehiculos eliminar();
     int esvaciodesde();
+    Vehiculos recorrer(int);
 
     
 
@@ -165,6 +166,10 @@ Vehiculos Heaparr::eliminar()
 	
 aux1=aux;
 return aux;
+}
+
+Vehiculos Heaparr::recorrer(int x){
+	return vector[x];
 }	
 
 /*

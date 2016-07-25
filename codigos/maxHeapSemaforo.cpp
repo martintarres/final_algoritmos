@@ -21,6 +21,7 @@ public:
     int size();
     void eliminar();
     int esvaciodesde();
+    Semaforo recorre(int);
 
     
 
@@ -32,11 +33,13 @@ private:
    Semaforo vector[cantt];
    Semaforo aux;
   // Edge e;
+  Semaforo s;
 
 };
 
 Heaparr1::Heaparr1(){
 //	Semaforo vector[cantt];
+	Semaforo s;
 } 
     
 
@@ -92,8 +95,13 @@ void Heaparr1::print(){
 //	cout<<vector[i].get_prioridad()<<endl;
 	
 }
-
 }
+
+Semaforo Heaparr1::recorre(int x){
+	return vector[x];
+}
+
+
 void Heaparr1::Max_Heapify(Semaforo heapArray[], int i, int heap_size) {
     // int n = size;
     int largest = 0;
@@ -185,11 +193,12 @@ int main(){
 	t.insert(s2);
 	t.print();
 	cout<<endl;
-	t.eliminar();
+//	t.eliminar();
 	t.print();
-}*/
+	t.mostarubi();
+}
 
-
+*/
 
 
 

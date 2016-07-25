@@ -1,8 +1,9 @@
 #include <iostream>
+
 //#include "Nodo.cpp"
 using namespace std;
 
-class Edge{
+class Edge  { 
 	private:
 		int dest;
 		int source;
