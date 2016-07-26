@@ -34,7 +34,7 @@ public:
 	int getUbicacion();
 	int getOrigen();
 	void insertar(Vehiculos);
-	void eliminaVehiculos();
+	Vehiculos eliminaVehiculos();
 	heapVehiculos getHeap();
 
 	
@@ -102,11 +102,11 @@ void Semaforo::insertar(Vehiculos v){
 	}
 }
 
-void Semaforo::eliminaVehiculos(){
-//	Vehiculos v;
+Vehiculos Semaforo::eliminaVehiculos(){
+	Vehiculos v;
 	h.eliminar();
 	cantVehiculos--;
-//	return v;
+	return v;
 }
 
 heapVehiculos Semaforo::getHeap(){
