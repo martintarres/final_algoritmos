@@ -8,9 +8,9 @@ using namespace std;
 
 const int cant=20;
 Vehiculos aux1;
-class Heaparr {
+class heapVehiculos {
 public:
-    Heaparr();
+    heapVehiculos();
     void insert(Vehiculos da);
     int getLeft(int i) { return 2 * i + 1; }
     int getRight(int i) { return 2 * i + 2; }
@@ -37,11 +37,11 @@ private:
 
 };
 
-Heaparr::Heaparr() {
+heapVehiculos::heapVehiculos() {
     num = 0;
 
 }
-int Heaparr::lugaresDisponibles(){
+int heapVehiculos::lugaresDisponibles(){
 	int contador=cant;
 	for(int i=0; i<cant;i++){
 		
@@ -53,7 +53,7 @@ int Heaparr::lugaresDisponibles(){
 	return contador;
 }
 
-int Heaparr::size(){
+int heapVehiculos::size(){
 	int contador=0;
 	for(int i=0; i<cant;i++){
 		contador++;
@@ -61,7 +61,7 @@ int Heaparr::size(){
 	return contador;
 }
 
-int Heaparr::esvaciodesde(){
+int heapVehiculos::esvaciodesde(){
 	for(int i=0 ; i<cant; i++){
 		if(vector[i].get_prioridad()== -1){
 		//	b++;
@@ -71,7 +71,7 @@ int Heaparr::esvaciodesde(){
 	}
 
 }
-void Heaparr::insert(Vehiculos da) {
+void heapVehiculos::insert(Vehiculos da) {
 /*		for(int i=0; i<cant; i++){
 		cout<<vector[i];
 	}*/
@@ -87,9 +87,9 @@ void Heaparr::insert(Vehiculos da) {
 
 }
 
-void Heaparr::print(){
+void heapVehiculos::print(){
 	for(int i=0;i<cant;i++)	{
-		cout<< "iteracion "<<i<<endl;
+		cout<< "vehiculo: "<<i<<endl;
 	cout<<vector[i].get_patente()<<endl;//->print();
 	cout<<vector[i].get_origen()<<endl;
 	cout<<vector[i].get_final()<<endl;
@@ -98,7 +98,7 @@ void Heaparr::print(){
 }
 
 }
-void Heaparr::Max_Heapify(Vehiculos heapArray[], int i, int heap_size) {
+void heapVehiculos::Max_Heapify(Vehiculos heapArray[], int i, int heap_size) {
     // int n = size;
     int largest = 0;
     int l = getLeft(i);
@@ -120,7 +120,7 @@ void Heaparr::Max_Heapify(Vehiculos heapArray[], int i, int heap_size) {
     }
     return;
 }
-void Heaparr::heapSort(Vehiculos heapArray[]) {
+void heapVehiculos::heapSort(Vehiculos heapArray[]) {
     //size = heap_size;
     int n = size ();
     Build_Max_Heap(heapArray, size());
@@ -132,7 +132,7 @@ void Heaparr::heapSort(Vehiculos heapArray[]) {
     }
 }
 
-void Heaparr::Build_Max_Heap(Vehiculos heapArray[], int heap_size) {
+void heapVehiculos::Build_Max_Heap(Vehiculos heapArray[], int heap_size) {
     int n = size();
     for (int i = floor((n - 1) / 2); i >= 0; i--) {
         Max_Heapify(heapArray, i, heap_size);
@@ -140,7 +140,7 @@ void Heaparr::Build_Max_Heap(Vehiculos heapArray[], int heap_size) {
     return;
 }
 
-Vehiculos Heaparr::eliminar()
+Vehiculos heapVehiculos::eliminar()
 {
 	//const int pepito=-1;
 	Vehiculos aux;
@@ -168,7 +168,7 @@ aux1=aux;
 return aux;
 }
 
-Vehiculos Heaparr::recorrer(int x){
+Vehiculos heapVehiculos::recorrer(int x){
 	return vector[x];
 }	
 
@@ -176,7 +176,7 @@ Vehiculos Heaparr::recorrer(int x){
 
 int main(){
 	
-	Heaparr t;
+	heapVehiculos t;
 	
 	
 	int numero, arreglo[100], q;

@@ -12,6 +12,7 @@ class Vehiculos{
 		int final;
 		int prioridad;
 		int patente;
+		bool estoyAdentro;
 	
 		
 	public:
@@ -24,6 +25,7 @@ class Vehiculos{
 			final=-1;
 			prioridad=-1;
 			patente=-1;
+			estoyAdentro=false;
 		
 		}
 		void set_origen(int);
@@ -34,6 +36,8 @@ class Vehiculos{
 		int get_final();
 		int get_patente();
 		int get_prioridad();
+		void activarAdentro();
+		bool estado();
 
 		
 };
@@ -67,7 +71,12 @@ int Vehiculos::get_prioridad(){
 	return prioridad;
 }
 
-
+void Vehiculos::activarAdentro(){
+	estoyAdentro=true;
+}
+bool Vehiculos::estado(){
+	return estoyAdentro;
+}
 
 /*
 int main(){   
