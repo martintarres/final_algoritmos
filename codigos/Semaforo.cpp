@@ -20,11 +20,12 @@ private:
 	int origen;
 	heapVehiculos h;
 //	Vehiculos *v;
+	bool fueVisitado;
 public: 
 	Semaforo(){
 		cantVehiculos=-1;
 		 h;
-		
+		fueVisitado=false;
 	}
 	Semaforo(Edge e);
 	int getCantDeVehiculos();
@@ -36,6 +37,8 @@ public:
 	void insertar(Vehiculos);
 	Vehiculos eliminaVehiculos();
 	heapVehiculos getHeap();
+	 void setFuiVisitado();
+	bool getFuiVisitado();
 
 	
 	
@@ -45,11 +48,11 @@ Semaforo::Semaforo(Edge e)
 		{
 		ubicacion = e.get_dest();
 		origen=e.get_source();
-		cantVehiculos = 0;
+		cantVehiculos = e.get_weight();
 		verde = false;
 		mano = false;
 		h;
-		
+		fueVisitado=false;
 	}
 
 int Semaforo::getCantDeVehiculos()
@@ -112,8 +115,17 @@ Vehiculos Semaforo::eliminaVehiculos(){
 heapVehiculos Semaforo::getHeap(){
 	return h;
 }
+void Semaforo::setFuiVisitado(){
+	if(fueVisitado=true){
+		fueVisitado=false;
+	}else {
+		fueVisitado=true;
+	}
+}
 
-
+bool Semaforo::getFuiVisitado(){
+	return fueVisitado;
+}
 /*
 int main()
 {

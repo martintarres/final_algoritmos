@@ -20,15 +20,23 @@ class Nodo {
 	Nodo (Edge numero, Nodo *next_ptr=NULL){
 		dato=numero, next= next_ptr;
 	}
+	Nodo *getNext (){return next;
+	}
 };
 
 class Lista{
 	private:
 		Nodo *cabeza;
+	//	Nodo *cabeza1;
+		int contador;
+	
+		
 		
 	public:
 		Lista(){
 			cabeza=NULL;
+			contador=0;
+		//	*cabeza1=*cabeza;
 		}
 		void agregar(Edge);
 		void mostrar();
@@ -36,7 +44,38 @@ class Lista{
 		int getSource();
 		int tamList();
 		int recorrerDest();
+		int pesos(int);
+		int destinos(int);
+		int getContador();
 };
+
+int Lista::pesos(int i){
+	Nodo *aux;
+	aux= cabeza;
+	int pesos[4];
+	for(int j=0 ; j<5 ; j++){
+		if(cabeza != NULL){
+			pesos [j] = cabeza->dato.get_weight();
+			cabeza=cabeza->next;
+		}
+	}
+	cabeza=aux;
+	return pesos [i];
+}
+
+int Lista::destinos(int i){
+	Nodo *aux;
+	aux= cabeza;
+	int dest[4];
+	for(int j=0 ; j<5 ; j++){
+		if(cabeza != NULL){
+			dest [j] = cabeza->dato.get_dest();
+			cabeza=cabeza->next;
+		}
+	}
+	cabeza=aux;
+	return dest [i];	
+}
 
 int Lista::getDest(){
 	Nodo *aux;
@@ -54,43 +93,65 @@ int Lista::getDest(){
 }
 
 int Lista::getSource(){
+	Nodo *aux;
+	aux=cabeza;
 		if(cabeza!=NULL){
 		return cabeza->dato.get_source();
 
 	cabeza=cabeza->next;
 
 	}
+	cabeza=aux;
 }
 
 	void Lista::agregar(Edge edge){
 		cabeza= new Nodo(edge, cabeza);
+		contador++;
 
+	}
+	
+	int Lista::getContador(){
+		return contador;
+	}
+	
+		int Lista::tamList(){
+	Nodo *aux;
+	aux=cabeza;
+		if (cabeza!=NULL){
+			
+			cabeza=cabeza->next;
+		 contador++;
+		//	cout<< contador<<endl;
+		
+		tamList();
+	
+}
+	cabeza=aux;
 	}
 	
 	void Lista::mostrar(){
 		
-
-		
+//int contador1=0;
+		Nodo *aux;
+		aux=cabeza;
 		if (cabeza!=NULL){
-			
+		
 		cout<<"("<< cabeza->dato.get_source()<<", ";
 		cout<< cabeza->dato.get_dest()<<", ";
 		cout<< cabeza->dato.get_weight()<<" )";
 		
 		cabeza=cabeza->next;
+	//	contador1++;
+	//	cout<< contador1<<endl;;
 		mostrar();
 	
 
 	}
+	cabeza=aux;
+	//	cabeza=cabeza1;
 }
 
-	int Lista::tamList(){
-		int contador=0;
-		if(cabeza!=NULL){
-			contador++;
-			cabeza=cabeza->next;
-		}
-	}
+
 	
 	class grafo {
 
@@ -129,7 +190,7 @@ void grafo::djistra(int origen,int destino)
 	colaPrioridad.insert(colaPrioridad.recorre(origen));
 	distancia[origen]=0;
 	int actual, adyacente, peso;
-		while(colaPrioridad.size()==0){
+		while(colaPrioridad.size()!=0){
 			aux= colaPrioridad.eliminarFondo(); //extraer o eliminar de minHeapNodos VER BIEN
 			actual= aux.getUbicacion();
 			
@@ -138,7 +199,7 @@ void grafo::djistra(int origen,int destino)
 		
 		visitado[actual]=true;				
 			
-		for(int i=0;i<ady[actual].tamList();i++){
+		for(int i=0;i<ady[actual].getContador();i++){
 			
 			adyacente=ady[actual].getDest();  /// a lo mejor tendria que recorrerla con un metodo parecido al mostrar de lista
 			peso=aux.getCantDeVehiculos();
@@ -161,9 +222,10 @@ void grafo::relajacion(int actual, int adyacente, int peso){
 }
 
 void grafo::print(int destino){
-	if(previo[destino] != -1){
-		print (previo [destino]);
+	if(previo[destino] != 1){
+	//	print (previo [destino]);
 			cout<<destino<<endl;
+		//	cout<< " soasdiajs";
 	}
 }
 	
@@ -184,7 +246,7 @@ void grafo::print(int destino){
 */
 
 
-
+/*
 int main(){
 
 	Lista *l= new Lista();	
@@ -194,6 +256,7 @@ int main(){
    	heapVehiculos g;
    	Semaforo s;//=  Semaforo(e); 
    	Vehiculos arveh[20];
+   	grafo df;
 
 int numeroo, arregloo[100], qq;
 int h=0;
@@ -228,7 +291,9 @@ for(int j=0;j<qq;j++) {
 		arveh[ggg]=v;
 		j=j+3;
 		ggg++;	
-
+//	df.djistra(v.get_origen(), v.get_final());
+//	df.print(v.get_origen());
+	
 	}
 
 
@@ -298,11 +363,27 @@ for(int i=0; i<64; i++){
 	
 	a[i].mostrar();
 	cout<<endl;
-	}*/
-cout<< " djistra" << endl;
-grafo df;
-df.djistra(1,15);
-df.print(15);
+//	cout<< a[i].tamList()<<endl;
+	}
+
+	for(int i=0; i<64; i++){
+	
+	a[i].mostrar();
+	cout<<endl;
+//	cout<< a[i].getContador()<<endl;
+	}
+	
+//	for(int i=0; i<64; i++){
+	
+//	a[i].mostrar();
+//	cout<<endl;
+//	cout<< a[i].tamList()<<endl;
+//	}
+//	t.print();
+//cout<< " djistra" << endl;
+
+
+
 
 }
 /*

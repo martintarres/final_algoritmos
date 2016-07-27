@@ -23,7 +23,7 @@ public:
     int esvaciodesde();
     Semaforo& recorre(int);
     Semaforo eliminarFondo();
-
+   
     
 
 private:
@@ -31,10 +31,11 @@ private:
    // int* maxHeap;
   //  int index;
     int i;
-   Semaforo vector[cantt];
-   Semaforo aux;
+   	Semaforo vector[cantt];
+   	Semaforo aux;
   // Edge e;
-  Semaforo s;
+  	Semaforo s;
+  	
   //Semaforo *punt[];
 
 };
@@ -42,6 +43,7 @@ private:
 heapSemaforos::heapSemaforos(){
 //	Semaforo vector[cantt];
 	Semaforo s;
+	
 } 
     
 
@@ -91,7 +93,7 @@ void heapSemaforos::insert(Semaforo da) {
 void heapSemaforos::print(){
 	for(int i=0;i<cantt;i++)	{
 	//	cout<< "iteracion "<<i<<endl;
-	cout<<vector[i].getCantDeVehiculos()<<" "<<vector[i].getOrigen()<<" "<< vector[i].getUbicacion()<<endl;
+	cout<<vector[i].getOrigen()<<" "<<vector[i].getUbicacion()<<" "<< vector[i].getCantDeVehiculos()<<endl;
 	//cout<<vector[i].get_origen()<<endl;
 //	cout<<vector[i].get_final()<<endl;
 //	cout<<vector[i].get_prioridad()<<endl;
@@ -180,41 +182,17 @@ void heapSemaforos::eliminar()
 
 Semaforo heapSemaforos::eliminarFondo(){
 	
-	//const int pepito=-1;
 	Semaforo auxDev;
-	//aux = vector [0];
-	
-//	for(int i=0; i< cantt ; i++){
-	//if((vector[i+1].getCantDeVehiculos()==-1) && (vector[i].getCantDeVehiculos() != -1)){
 	int lugar=0;
 	lugar= size()-lugaresDisponibles()-1;
-//	cout<< lugar;
-	//auxDev = vector[lugar];
-//	vector[lugar].e
-//	vector[lugar].s
+	auxDev=vector[lugar];
 	vector[lugar].setCantDeVehiculos(-1);	
 	return auxDev;
-		//vector[0]= vector[i];
-//		vector [i].setCantDeVehiculos(-1) ;
-	//	vector [i].set_origen(-1);
-	//	vector [i].set_final(-1);
-	//	vector [i].set_patente(-1);
 
-//}else {
-//	if(lugaresDisponibles()==0){
-//	vector [0].setCantDeVehiculos(-1) ;
-	//	vector [0].setCant(-1);
-	//	vector [0].set_final(-1);
-	//	vector [0].set_patente(-1);
-
-	
-
- //heapSort( vector);
-//	return aux;
-//aux1=aux;
-//return aux;
-	
 }
+
+
+
 /*
 int main(){
 
