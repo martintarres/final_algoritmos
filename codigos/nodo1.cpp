@@ -5,7 +5,7 @@
 #include <fstream> 
 #include "heapSemaforo.cpp"
 //#include "graph.cpp"
-#define MAX 64
+#define MAX 140
 #define INF 9000
 
 using namespace std;
@@ -52,7 +52,7 @@ class Lista{
 int Lista::pesos(int i){
 	Nodo *aux;
 	aux= cabeza;
-	int pesos[4];
+	int pesos[5];
 	for(int j=0 ; j<5 ; j++){
 		if(cabeza != NULL){
 			pesos [j] = cabeza->dato.get_weight();
@@ -66,7 +66,7 @@ int Lista::pesos(int i){
 int Lista::destinos(int i){
 	Nodo *aux;
 	aux= cabeza;
-	int dest[4];
+	int dest[5];
 	for(int j=0 ; j<5 ; j++){
 		if(cabeza != NULL){
 			dest [j] = cabeza->dato.get_dest();
@@ -152,7 +152,7 @@ int Lista::getSource(){
 }
 
 
-	
+	/*
 	class grafo {
 
 	public:
@@ -228,7 +228,7 @@ void grafo::print(int destino){
 		//	cout<< " soasdiajs";
 	}
 }
-	
+	*/
 /*	int Lista::recorrerDest(){
 			if (cabeza!=NULL){
 		

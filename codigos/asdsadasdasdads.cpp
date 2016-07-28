@@ -6,7 +6,7 @@ class pepito{
 	private:
 		int dist[140];
 		int previo[140];
-		heapSemaforos t;
+		heapSemaforos t, t1;
 		Semaforo auxiliar;
 		int chota;
 		bool visitado[140];
@@ -22,40 +22,63 @@ public:
 		t;
 		
 	}
-	void dijkstra(Lista a[], Semaforo , heapSemaforos );
+	void dijkstra(Lista a[], int , heapSemaforos );
 	void relajacion(int actual, int adyacente, int peso, Semaforo);
 	void print (int);
 };
 
-void pepito::dijkstra(Lista a[], Semaforo s, heapSemaforos t){
-	this->t=t;
-	int numarreglo;
+void pepito::dijkstra(Lista a[], int k,  heapSemaforos t){
+	//this->t=t;
+//	t.recorre(k).setCantDeVehiculos(0);
+dist[k]=0;
+for(int i=0; i< 64;i++){
+		if(t.recorre(i).getOrigen() == k){
+			k=i;
+			break;
+		} 
+
+	}
+	t.insert(t.recorre(k));
+//	t1.print();
+//	t.insert(t.recorre(k));
+//	heapSemaforos t1;
+//	t.recorre(k).setCantDeVehiculos(0);
+//	t1.insert(t.recorre(k));
+	//t.insert()
+//	cout<<" soy t"<<endl;
+//	t.print();
+////	cout<<" soy t1"<< endl;
+//	t1.print();
+//	s.setCantDeVehiculos(0);
+	//t.insert(s);
+	
+//	int numarreglo;
 	int adyacente;
 	int peso;
-	//dist[t.recorre(0)]=0;
+	int actual;
+//	actual = k;
 //	Lista a;
 //	b=a;
-	while (t.size()-t.lugaresDisponibles() != 0){
+
+	while (t.esvaciodesde() != 0){
 		auxiliar=t.eliminarFondo();
-		chota = auxiliar.getOrigen()-1;
-		if(visitado[chota])	continue;
-			visitado[chota]= true;
+		actual =auxiliar.getOrigen()-1;
+		cout<<"soy actual: "<<actual<<endl;
+		//chota++;
+		if(visitado[actual])	continue;
+			visitado[actual]= true;
 		//	auxiliar.setFuiVisitado();
 			
-			for(int i=0; i<a[chota].getContador(); i++){
-				peso=a[chota].pesos(i);
-				adyacente= a[chota].destinos(i);
+			for(int i=0; i<a[actual].getContador(); i++){
+				peso=a[actual].pesos(i);
+				adyacente= a[actual].destinos(i);
 				if(!visitado[adyacente]){
-					relajacion(chota, adyacente, peso, auxiliar);
+					relajacion(actual+1 , adyacente, peso, auxiliar);
 				}
 			}
 			
-			
-	//	numarreglo=auxiliar.getOrigen()-1;
-	//	b[numarreglo].
-		
 		}
-		cout<< "Distancias mas cortas iniciando en Semaforo "<< s.getOrigen()<<endl;
+//		cout<< "Distancias mas cortas iniciando en Semaforo "<< s.getOrigen()<<endl;
 		
     for( int i = 1 ; i <= 140 ; ++i ){
     	cout<< "Semaforo " << i << " distancia mas corta " << dist[i]<< endl;
@@ -72,10 +95,16 @@ void pepito::dijkstra(Lista a[], Semaforo s, heapSemaforos t){
 }
 
 void pepito::relajacion(int actual, int adyacente, int peso, Semaforo auxiliar){
-	if( actual + peso < adyacente){
-		adyacente = actual + peso;
-		adyacente = actual;
-		t.insert(auxiliar);
+	if( dist[actual] + peso < dist[adyacente]){
+		dist[adyacente]= dist[actual] + peso;
+		previo[adyacente ]= actual;
+		Edge e(actual, adyacente, dist[adyacente]);
+	//	e=(actual, adyacente, dist[adyacente]);
+		Semaforo s(e);
+		
+		t.insert(s);
+	//	t.print();
+		cout<<endl;
 	}
 }
 
@@ -213,10 +242,13 @@ cout<<endl;
  //a[0].mostrar();	
 	pepito p;
 	t.print();
+	int kk;
+	cout<<" Ingrese inicial"<<endl;
+	cin>>kk;
 //	int inicial;
 //	cout<< " Ingrese semaforo incial "<<endl;
 //	cin>>inicial;
-	p.dijkstra(a, t.recorre(0), t); 
+	p.dijkstra(a, kk,  t); 
 //	dijkstra(inicial);
 	
 //cout<< " djistra" << endl;

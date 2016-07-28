@@ -1,0 +1,69 @@
+int main(){
+	
+	Lista *l= new Lista();	
+   	Lista a[num_listas];
+
+int h=0;
+int q=0,arreglo[tamano_arcos],numero; 
+
+
+ifstream archivo("ficheroTexto.txt"); 
+if(archivo.good()){ 
+while(archivo>>numero) 
+
+
+arreglo[q++]=numero;	
+
+
+	Heaparr1 t;
+
+int k = 0;
+for(int j=0;j<q;j++) {
+	
+	Edge e;
+
+
+
+e.set_source(arreglo[j]);//.arreglo[j]<<" =1"<<endl;
+e.set_dest(arreglo[j+1]);//[j+1]<<" =2"<<endl;
+e.set_weight(j+2);
+
+Semaforo s=  Semaforo(e); 
+t.insert(s);
+
+e.set_weight(s.esvaciodesde());
+
+if (e.get_source()==arreglo[j-3]||e.get_source()==1)//|| e.get_source() == -1)
+{
+
+	l->agregar(e);
+	a[k]=*l;
+
+}
+else
+{
+	k++;
+	
+	Lista *l1=new Lista();
+	l1->agregar(e);
+	a[k]= *l1;
+	l =l1;
+
+}
+
+
+j=j+2;
+
+}
+
+ //t.print();
+
+}
+else{ 
+cout<<"El archivo no se encuentra\n"; 
+} 
+
+for(int i=0; i<64; i++){
+	a[i].mostrar();
+	cout<<endl;
+	}
